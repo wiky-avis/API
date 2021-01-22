@@ -24,6 +24,7 @@ class ArticleView(APIView):
         saved_article = get_object_or_404(Article.objects.all(), pk=pk)
         data = request.data.get('article')
         serializer = ArticleSerializer(instance=saved_article, data=data, partial=True)
+        #serializer = ArticleSerializer(instance=saved_article, data=request.data, partial=True)
         if serializer.is_valid(raise_exception=True):
             article_saved = serializer.save()
         return Response({
